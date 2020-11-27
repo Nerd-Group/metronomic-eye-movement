@@ -1,4 +1,3 @@
-#include <ESP8266WiFi.h>
 #include <ESP8266mDNS.h>
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
@@ -10,7 +9,6 @@ void InitOTA( void ) {
   ArduinoOTA.setPassword(OTA_Password);
 
 #ifdef OTA_Passwd_Hash
-#define OTA_Passwd_Hash
   ArduinoOTA.setPasswordHash(OTA_Passwd_Hash);
 #endif
 
@@ -23,42 +21,38 @@ void InitOTA( void ) {
     }
     // NOTE: if updating FS this would be the place to unmount FS using FS.end()
 #ifdef serial
-#define serial
-    Serial.println("Start updating " + type);
+    Serial.println("OTA: Start updating " + type);
 #endif
   });
 
 
   ArduinoOTA.onEnd([]() {
 #ifdef serial
-#define serial
-    Serial.println("\nEnd");
+    Serial.println("\nOTA: Finished");
 #endif
   });
 
 
   ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
 #ifdef serial
-#define serial
-    Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+    Serial.printf("OTA: Progress: %u%%\r", (progress / (total / 100)));
 #endif
   });
 
 
   ArduinoOTA.onError([](ota_error_t error) {
 #ifdef serial
-#define serial
-    Serial.printf("Error[%u]: ", error);
+    Serial.printf("OTA: Error[%u]: ", error);
     if (error == OTA_AUTH_ERROR) {
-      Serial.println("Auth Failed");
+      Serial.println("OTA: Auth Failed");
     } else if (error == OTA_BEGIN_ERROR) {
-      Serial.println("Begin Failed");
+      Serial.println("OTA: Begin Failed");
     } else if (error == OTA_CONNECT_ERROR) {
-      Serial.println("Connect Failed");
+      Serial.println("OTA: Connect Failed");
     } else if (error == OTA_RECEIVE_ERROR) {
-      Serial.println("Receive Failed");
+      Serial.println("OTA: Receive Failed");
     } else if (error == OTA_END_ERROR) {
-      Serial.println("End Failed");
+      Serial.println("OTA: End Failed");
     }
 #endif
   });
@@ -67,7 +61,6 @@ void InitOTA( void ) {
   ArduinoOTA.begin();
 
 #ifdef serial
-#define serial
-  Serial.println("OTA Service enabled");
+  Serial.println("OTA: Service enabled");
 #endif
 }

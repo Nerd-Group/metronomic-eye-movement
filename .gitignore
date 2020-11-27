@@ -31,5 +31,3 @@
 *.out
 *.app
 
-# Configuration files
-firmware/config.h

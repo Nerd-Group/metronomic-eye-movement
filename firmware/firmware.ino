@@ -11,11 +11,6 @@
 #endif
 
 
-// workaround for external variables because 'extern' isnt working
-const char* WiFi_SSID     = CONFIG_SSID;
-const char* WiFi_PSK      = CONFIG_PSK;
-
-
 
 // declare the web server
 ESP8266WebServer server(80);
@@ -32,7 +27,7 @@ void setup( void ) {
 
   // set up WiFi Network connection
   WiFi.mode(WIFI_STA);
-  WiFi.begin(WiFi_SSID, WiFi_PSK);
+  WiFi.begin((const char*)WiFi_SSID, (const char*)WiFi_PSK);
 
 
   // if serial debugging is enabled: wait until the wifi connection is done and print the IP Adress
@@ -60,7 +55,7 @@ void setup( void ) {
 
   // initialise OTA Interface
 #ifdef OTA
-  //InitOTA();
+  InitOTA();
 #endif
 }
 
