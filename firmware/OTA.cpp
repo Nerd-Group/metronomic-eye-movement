@@ -4,9 +4,17 @@
 #include "config.h"
 
 void InitOTA( void ) {
+#ifdef OTA_Port
   ArduinoOTA.setPort(OTA_Port);
+#endif
+
+#ifdef OTA_Hostname
   ArduinoOTA.setHostname(OTA_Hostname);
+#endif
+  
+#ifdef OTA_Password
   ArduinoOTA.setPassword(OTA_Password);
+#endif
 
 #ifdef OTA_Passwd_Hash
   ArduinoOTA.setPasswordHash(OTA_Passwd_Hash);
@@ -63,4 +71,11 @@ void InitOTA( void ) {
 #ifdef serial
   Serial.println("OTA: Service enabled");
 #endif
+}
+
+
+
+// make the OTA service run when a request comes in
+void OTA_KeepAlive( void ){
+  ArduinoOTA.handle();
 }

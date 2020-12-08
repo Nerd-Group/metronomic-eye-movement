@@ -2,15 +2,19 @@
 #define CONFIG
 
 // login to wifi network
-#define WiFi_SSID "Michi\ 🐿️"
-#define WiFi_PSK "callMeTheRoller"
+#define WiFi_SSID "Test-WiFi"
+#define WiFi_PSK "Pass1word"
 
 
 
 // Pin Layout:
 
-//which pin is connected to the WS2812 LED Stripe
+// which pin is connected to the WS2812 LED Stripe
 #define pData 2
+// define the LED Type for FastLED Library.
+// default is WS2812 or WS2812B
+#define LED_Type WS2812
+
 
 // where is the button connected?
 #define pButton 3
@@ -41,7 +45,7 @@
 
 
 // optional serial debugging. Comment it out to disable serial debugging
-#define serial
+//#define serial
 
 #ifdef serial
 #define SERIAL_BAUD 115200
