@@ -2,8 +2,8 @@
 #define CONFIG
 
 // login to wifi network
-#define WiFi_SSID "Test-WiFi"
-#define WiFi_PSK "Pass1word"
+#define WiFi_SSID "SSID"
+#define WiFi_PSK "Password"
 
 
 

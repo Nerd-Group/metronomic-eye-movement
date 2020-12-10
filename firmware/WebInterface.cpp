@@ -72,6 +72,10 @@ void handleConfig( void ) {
   Serial.println("\t Color-B = "  + String(b));
 #endif
 
+#ifdef serial
+  Serial.println("HTTP-Server: Storing Value in EEPROM");
+#endif
+
   // store values in EEPROM
   eeprom_config * Config = new eeprom_config();
   Config->setTime( runtime );
@@ -80,6 +84,10 @@ void handleConfig( void ) {
   Config->setColorGreen( g );
   Config->setColorBlue( b );
   delete Config;
+
+#ifdef serial
+  Serial.println("HTTP-Server: reinitialising LED Stripe");
+#endif
 
   // Update config of the LED Stripe
   updateLEDConfig();
